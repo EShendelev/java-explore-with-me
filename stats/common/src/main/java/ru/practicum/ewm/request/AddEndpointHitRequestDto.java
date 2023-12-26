@@ -30,3 +30,4 @@ public class AddEndpointHitRequestDto {
 
         return endpointHitDto;
     }
+}
