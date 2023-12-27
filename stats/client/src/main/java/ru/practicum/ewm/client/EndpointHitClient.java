@@ -3,6 +3,7 @@ package ru.practicum.ewm.client;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.util.UriComponentsBuilder;
 import ru.practicum.ewm.request.AddEndpointHitRequestDto;
 import ru.practicum.ewm.response.EndpointHitResponseDto;
 import ru.practicum.ewm.response.stats.ViewStatsResponseDto;
@@ -36,13 +37,15 @@ public class EndpointHitClient {
             List<String> uris,
             Boolean unique
     ) {
+        String uri = UriComponentsBuilder.fromPath("/stats")
+                .queryParam("start", start.format(dateTimeFormat))
+                .queryParam("end", end.format(dateTimeFormat))
+                .queryParam("uris", uris)
+                .queryParam("unique", unique)
+                .build().toUriString();
+
         return webClient.get()
-                .uri(uriBuilder -> uriBuilder.path("/stats")
-                        .queryParam("start", start.format(dateTimeFormat))
-                        .queryParam("end", end.format(dateTimeFormat))
-                        .queryParam("uris", uris)
-                        .queryParam("unique", unique)
-                        .build())
+                .uri(uri)
                 .retrieve()
                 .bodyToFlux(ViewStatsResponseDto.class)
                 .collectList()

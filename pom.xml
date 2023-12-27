@@ -8,7 +8,7 @@
 		<version>2.7.5</version>
 		<relativePath/>
 	</parent>
-	<!-- lookup parent from repository -->
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.practicum</groupId>
 	<artifactId>explore-with-me</artifactId>
