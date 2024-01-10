@@ -1,4 +1,4 @@
-package ru.practicum.ewm.response;
+package ru.practicum.ewm.hit.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

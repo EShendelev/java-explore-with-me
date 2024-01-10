@@ -1,4 +1,4 @@
-package ru.practicum.ewm.entity.participation.repository.jpa.model;
+package ru.practicum.ewm.entity.participation.repository.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

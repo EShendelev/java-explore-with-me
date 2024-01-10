@@ -1,4 +1,4 @@
-package ru.practicum.ewm.entity.event.service.contoller.impl;
+package ru.practicum.ewm.entity.event.service.controller.implement;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import ru.practicum.ewm.entity.event.repository.EventJpaRepository;
 import ru.practicum.ewm.entity.event.service.contoller.EventPublicService;
 import ru.practicum.ewm.entity.event.service.statistics.EventStatisticsService;
 import ru.practicum.ewm.entity.participation.entity.Participation;
-import ru.practicum.ewm.entity.participation.repository.jpa.ParticipationRequestJpaRepository;
+import ru.practicum.ewm.entity.participation.repository.ParticipationRequestJpaRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -34,7 +34,7 @@ public class EventPublicServiceImpl implements EventPublicService {
 
     @Override
     public EventFullResponseDto getEventById(Long id, HttpServletRequest request) {
-        Event event = eventRepository.checkEventExistsById(id);
+        Event event = eventRepository.checkEventExistsByIdAndReturn(id);
         eventStatisticsService.addEventView(request, LocalDateTime.now());
         EventFullResponseDto eventDto = getEventFullResponseDto(event, request);
         log.debug("EVENT<DTO>[id={}, title='{}'] returned.",

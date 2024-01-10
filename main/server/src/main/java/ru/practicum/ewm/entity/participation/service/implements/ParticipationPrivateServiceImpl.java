@@ -9,7 +9,7 @@ import ru.practicum.ewm.entity.event.repository.EventJpaRepository;
 import ru.practicum.ewm.entity.participation.dto.response.ParticipationResponseDto;
 import ru.practicum.ewm.entity.participation.entity.Participation;
 import ru.practicum.ewm.entity.participation.mapper.ParticipationMapper;
-import ru.practicum.ewm.entity.participation.repository.jpa.ParticipationRequestJpaRepository;
+import ru.practicum.ewm.entity.participation.repository.ParticipationRequestJpaRepository;
 import ru.practicum.ewm.entity.participation.service.ParticipationPrivateService;
 import ru.practicum.ewm.entity.participation.validation.validator.ParticipationValidator;
 import ru.practicum.ewm.entity.user.entity.User;
@@ -31,7 +31,7 @@ public class ParticipationPrivateServiceImpl implements ParticipationPrivateServ
     @Transactional
     public ParticipationResponseDto addRequest(Long requesterId, Long eventId) {
         User user = userRepository.checkUserExistsById(requesterId);
-        Event event = eventRepository.checkEventExistsById(eventId);
+        Event event = eventRepository.checkEventExistsByIdAndReturn(eventId);
         checkRequest(user, event);
         Participation request = getParticipationRequest(user, event);
         Participation savedRequest = requestRepository.save(request);

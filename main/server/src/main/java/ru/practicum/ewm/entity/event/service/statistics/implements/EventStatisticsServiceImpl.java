@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.practicum.ewm.entity.event.service.statistics.EventStatisticsService;
-import ru.practicum.ewm.hit.client.EndpointHitClient;
+import ru.practicum.ewm.client.EndpointHitClient;
 import ru.practicum.ewm.hit.dto.request.AddEndpointHitRequestDto;
 import ru.practicum.ewm.hit.dto.response.stats.ViewStatsResponseDto;
 

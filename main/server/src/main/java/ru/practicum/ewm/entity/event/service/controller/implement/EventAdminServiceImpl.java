@@ -1,4 +1,4 @@
-package ru.practicum.ewm.entity.event.service.contoller.impl;
+package ru.practicum.ewm.entity.event.service.controller.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import ru.practicum.ewm.entity.event.service.contoller.EventAdminService;
 import ru.practicum.ewm.entity.event.service.statistics.EventStatisticsService;
 import ru.practicum.ewm.entity.event.validation.validator.EventValidator;
 import ru.practicum.ewm.entity.participation.entity.Participation;
-import ru.practicum.ewm.entity.participation.repository.jpa.ParticipationRequestJpaRepository;
+import ru.practicum.ewm.entity.participation.repository.ParticipationRequestJpaRepository;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -66,7 +66,7 @@ public class EventAdminServiceImpl implements EventAdminService {
     @Transactional
     public EventFullResponseDto updateAdminEventById(Long eventId, UpdateEventAdminRequestDto adminRequest) {
 
-        Event event = getUpdatedEvent(eventRepository.checkEventExistsById(eventId), adminRequest);
+        Event event = getUpdatedEvent(eventRepository.checkEventExistsByIdAndReturn(eventId), adminRequest);
         checkEventAdminUpdate(event, adminRequest.getStateAction());
         performActionIfExists(event, adminRequest.getStateAction());
         log.debug("EVENT[id={}, initiator_id={}, title='{}'] updated by admin.",
@@ -105,7 +105,7 @@ public class EventAdminServiceImpl implements EventAdminService {
     private Event getUpdatedEvent(Event event, UpdateEventAdminRequestDto adminRequest) {
 
         if (adminRequest.getCategory() != null) {
-            Category category = categoryRepository.checkCategoryExistsById(adminRequest.getCategory());
+            Category category = categoryRepository.checkCategoryExistsByIdAndReturn(adminRequest.getCategory());
             event.setCategory(category);
         }
 

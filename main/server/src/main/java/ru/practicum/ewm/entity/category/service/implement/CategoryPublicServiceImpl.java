@@ -32,7 +32,7 @@ public class CategoryPublicServiceImpl implements CategoryPublicService {
 
     @Override
     public CategoryResponseDto getCategoryById(Long catId) {
-        Category category = categoryRepository.checkCategoryExistsById(catId);
+        Category category = categoryRepository.checkCategoryExistsByIdAndReturn(catId);
         CategoryResponseDto categoryDto = CategoryMapper.toCategoryResponseDto(category);
         log.debug("CATEGORY<DTO>[id={}, name='{}'] returned", categoryDto.getId(), categoryDto.getName());
         return categoryDto;

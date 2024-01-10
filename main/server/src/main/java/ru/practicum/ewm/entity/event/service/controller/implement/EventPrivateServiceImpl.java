@@ -1,4 +1,4 @@
-package ru.practicum.ewm.entity.event.service.contoller.impl;
+package ru.practicum.ewm.entity.event.service.controller.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import ru.practicum.ewm.entity.participation.dto.request.UpdateEventParticipatio
 import ru.practicum.ewm.entity.participation.dto.response.ParticipationResponseDto;
 import ru.practicum.ewm.entity.participation.entity.Participation;
 import ru.practicum.ewm.entity.participation.mapper.ParticipationMapper;
-import ru.practicum.ewm.entity.participation.repository.jpa.ParticipationRequestJpaRepository;
+import ru.practicum.ewm.entity.participation.repository.ParticipationRequestJpaRepository;
 import ru.practicum.ewm.entity.participation.validation.validator.ParticipationValidator;
 import ru.practicum.ewm.entity.user.entity.User;
 import ru.practicum.ewm.entity.user.repository.UserJpaRepository;
@@ -43,7 +43,7 @@ public class EventPrivateServiceImpl implements EventPrivateService {
     @Transactional
     public EventFullResponseDto addEvent(Long userId, AddEventRequestDto eventDto) {
         User user = userRepository.checkUserExistsById(userId);
-        Category category = categoryRepository.checkCategoryExistsById(eventDto.getCategory());
+        Category category = categoryRepository.checkCategoryExistsByIdAndReturn(eventDto.getCategory());
         Event event = getEvent(eventDto, user, category);
         EventValidator.validateEventDateMoreThanTwoHoursAfterCurrentTime(event);
         Event savedEvent = eventRepository.save(event);
@@ -65,7 +65,7 @@ public class EventPrivateServiceImpl implements EventPrivateService {
     @Override
     public EventFullResponseDto getEventById(Long userId, Long eventId) {
         userRepository.checkUserExistsById(userId);
-        Event event = eventRepository.checkEventExistsById(eventId);
+        Event event = eventRepository.checkEventExistsByIdAndReturn(eventId);
         EventFullResponseDto eventDto = EventMapper.toEventFullResponseDto(event, null, null);
         log.debug("EVENT<DTO>[id={}, title='{}'] returned.",
                 eventDto.getId(), eventDto.getTitle());
@@ -78,7 +78,7 @@ public class EventPrivateServiceImpl implements EventPrivateService {
             Integer from, Integer size
     ) {
         userRepository.checkUserExistsById(userId);
-        eventRepository.checkEventExistsById(eventId);
+        eventRepository.checkEventExistsByIdAndReturn(eventId);
         Page<Participation> requests = requestRepository.findAllByEventInitiatorIdAndEventId(
                 userId,
                 eventId,
@@ -93,7 +93,7 @@ public class EventPrivateServiceImpl implements EventPrivateService {
     @Transactional
     public EventFullResponseDto updateEventById(Long userId, Long eventId, UpdateEventUserRequestDto eventDto) {
         userRepository.checkUserExistsById(userId);
-        Event event = eventRepository.checkEventExistsById(eventId);
+        Event event = eventRepository.checkEventExistsByIdAndReturn(eventId);
         Event updatedEvent = getUpdatedEvent(event, eventDto);
         EventValidator.validateEventBeforeUpdating(updatedEvent);
         EventValidator.validateEventDateMoreThanTwoHoursAfterCurrentTime(updatedEvent);
@@ -113,7 +113,7 @@ public class EventPrivateServiceImpl implements EventPrivateService {
             UpdateEventParticipationStatusRequestDto requestStatusDto
     ) {
         userRepository.checkUserExistsById(userId);
-        Event event = eventRepository.checkEventExistsById(eventId);
+        Event event = eventRepository.checkEventExistsByIdAndReturn(eventId);
         List<Participation> requests = considerRequests(event, requestStatusDto);
         requestRepository.saveAll(requests);
         log.debug("EVENT_REQUESTS[request_ids_count={}, status='{}'] updated.",
@@ -142,7 +142,7 @@ public class EventPrivateServiceImpl implements EventPrivateService {
     private Event getUpdatedEvent(Event event, UpdateEventUserRequestDto eventDto) {
 
         if (eventDto.getCategory() != null) {
-            event.setCategory(categoryRepository.checkCategoryExistsById(eventDto.getCategory()));
+            event.setCategory(categoryRepository.checkCategoryExistsByIdAndReturn(eventDto.getCategory()));
         }
 
         if (eventDto.getLocation() != null) {

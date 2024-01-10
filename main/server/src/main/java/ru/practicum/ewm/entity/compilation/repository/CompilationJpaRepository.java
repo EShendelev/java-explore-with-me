@@ -10,7 +10,7 @@ import ru.practicum.ewm.entity.compilation.exception.CompilationNotFoundExceptio
 public interface CompilationJpaRepository extends JpaRepository<Compilation, Long> {
     Page<Compilation> findAllByPinnedIs(Boolean pinned, Pageable pageable);
 
-    default Compilation checkCompilationExistsById(@NonNull Long compId) {
+    default Compilation checkCompilationExistsByIdAndReturn(@NonNull Long compId) {
         try {
             return getReferenceById(compId);
         } catch (Exception e) {

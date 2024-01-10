@@ -31,7 +31,7 @@ public class CategoryAdminServiceImpl implements CategoryAdminService {
     @Override
     @Transactional
     public void deleteCategoryById(Long catId) {
-        categoryRepository.checkCategoryExistsById(catId);
+        categoryRepository.checkCategoryExistsByIdAndReturn(catId);
         categoryRepository.deleteById(catId);
         log.debug("CATEGORY[id={}] deleted.", catId);
     }
@@ -44,7 +44,7 @@ public class CategoryAdminServiceImpl implements CategoryAdminService {
     @Override
     @Transactional
     public CategoryResponseDto updateCategoryById(Long catId, UpdateCategoryRequestDto categoryDto) {
-        Category updatedCategory = getUpdatedCategory(categoryRepository.checkCategoryExistsById(catId), categoryDto);
+        Category updatedCategory = getUpdatedCategory(categoryRepository.checkCategoryExistsByIdAndReturn(catId), categoryDto);
         log.debug("CATEGORY[id={}, name='{}'] updated.", updatedCategory.getId(), updatedCategory.getName());
         return CategoryMapper.toCategoryResponseDto(updatedCategory);
     }

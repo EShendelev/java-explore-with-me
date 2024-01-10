@@ -52,7 +52,7 @@ public interface EventJpaRepository extends JpaRepository<Event, Long> {
             @Param("state") Event.State state,
             Pageable pageable);
 
-    default Event checkEventExistsById(@NonNull Long eventId) {
+    default Event checkEventExistsByIdAndReturn(@NonNull Long eventId) {
         try {
             return getReferenceById(eventId);
         } catch (Exception e) {

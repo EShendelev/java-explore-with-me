@@ -1,4 +1,4 @@
-package ru.practicum.ewm.request;
+package ru.practicum.ewm.hit.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

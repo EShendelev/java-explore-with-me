@@ -6,7 +6,7 @@ import ru.practicum.ewm.entity.category.exception.CategoryNotFoundException;
 
 public interface CategoryJpaRepository extends JpaRepository<Category, Long> {
 
-    default Category checkCategoryExistsById(Long catId) {
+    default Category checkCategoryExistsByIdAndReturn(Long catId) {
         try {
             Category category = getReferenceById(catId);
             return category;

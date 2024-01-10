@@ -46,7 +46,7 @@ public class CompilationAdminServiceImpl implements CompilationAdminService {
     @Override
     @Transactional
     public void deleteCompilationById(Long compId) {
-        compilationRepository.checkCompilationExistsById(compId);
+        compilationRepository.checkCompilationExistsByIdAndReturn(compId);
         compilationRepository.deleteById(compId);
         log.debug("COMPILATION[id={}] deleted", compId);
     }
@@ -54,7 +54,7 @@ public class CompilationAdminServiceImpl implements CompilationAdminService {
     @Override
     @Transactional
     public CompilationResponseDto updateCompilation(Long compId, UpdateCompilationRequestDto compilationDto) {
-        Compilation updatedCompilation = getUpdatedCompilation(compilationRepository.checkCompilationExistsById(compId),
+        Compilation updatedCompilation = getUpdatedCompilation(compilationRepository.checkCompilationExistsByIdAndReturn(compId),
                 compilationDto);
         log.debug("COMPILATION[id={}, title='{}', pinned={}, events_count={}] updated.",
                 updatedCompilation.getId(),

@@ -23,7 +23,7 @@ public class CompilationPublicServiceImpl implements CompilationPublicService {
     @Override
     public CompilationResponseDto getCompilationById(Long compId) {
         Compilation compilation = compilationRepository
-                .getReferenceById(compilationRepository.checkCompilationExistsById(compId).getId());
+                .getReferenceById(compilationRepository.checkCompilationExistsByIdAndReturn(compId).getId());
         return CompilationMapper.toCompilationResponseDto(compilation, null, null);
     }
 

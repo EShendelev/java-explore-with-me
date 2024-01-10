@@ -1,4 +1,4 @@
-package ru.practicum.ewm.entity.participation.repository.jpa;
+package ru.practicum.ewm.entity.participation.repository;
 
 import lombok.NonNull;
 import org.springframework.data.domain.Page;
@@ -9,7 +9,7 @@ import ru.practicum.ewm.entity.event.entity.Event;
 import ru.practicum.ewm.entity.participation.entity.Participation;
 import ru.practicum.ewm.entity.participation.entity.Participation.Status;
 import ru.practicum.ewm.entity.participation.exception.ParticipationRequestNotFoundException;
-import ru.practicum.ewm.entity.participation.repository.jpa.model.EventRequestsCount;
+import ru.practicum.ewm.entity.participation.repository.model.EventRequestsCount;
 
 import java.util.List;
 import java.util.Map;
@@ -56,7 +56,7 @@ public interface ParticipationRequestJpaRepository extends JpaRepository<Partici
                 .collect(toMap(EventRequestsCount::getEventId, EventRequestsCount::getRequestsCount));
     }
 
-    @Query("select new ru.practicum.ewm.entity.participation.repository.jpa.model.EventRequestsCount(" +
+    @Query("select new ru.practicum.ewm.entity.participation.repository.model.EventRequestsCount(" +
             "req.event.id, " +
             "count(req)) " +
             "from Participation req " +

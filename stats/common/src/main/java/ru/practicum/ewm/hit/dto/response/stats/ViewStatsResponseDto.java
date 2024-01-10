@@ -1,4 +1,4 @@
-package ru.practicum.ewm.response.stats;
+package ru.practicum.ewm.hit.dto.response.stats;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
