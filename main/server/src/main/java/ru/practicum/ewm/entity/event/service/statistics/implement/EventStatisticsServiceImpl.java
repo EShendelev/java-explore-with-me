@@ -1,4 +1,4 @@
-package ru.practicum.ewm.entity.event.service.statistics.impl;
+package ru.practicum.ewm.entity.event.service.statistics.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

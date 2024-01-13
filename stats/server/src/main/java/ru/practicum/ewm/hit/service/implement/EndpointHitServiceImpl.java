@@ -1,10 +1,11 @@
-package ru.practicum.ewm.hit.service.impl;
+package ru.practicum.ewm.hit.service.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.ewm.hit.exception.EndBeforeStartException;
 import ru.practicum.ewm.hit.mapper.EndpointHitMapper;
 import ru.practicum.ewm.hit.dto.request.AddEndpointHitRequestDto;
 import ru.practicum.ewm.hit.dto.response.EndpointHitResponseDto;
@@ -44,6 +45,9 @@ public class EndpointHitServiceImpl implements EndpointHitService {
             List<String> uris,
             Boolean unique
     ) {
+        if (start.isAfter(end)) {
+            throw new EndBeforeStartException("end is before start");
+        }
         List<ViewStats> endpointHitsStats;
         if (unique == Boolean.TRUE) {
             endpointHitsStats = endpointHitRepository.collectUniqueEndpointStats(

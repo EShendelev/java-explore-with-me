@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -16,16 +17,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.time.format.DateTimeFormatter;
 
 @Configuration
+@PropertySource("classpath:application.properties")
 public class DateTimeFormatConfig implements WebMvcConfigurer {
     private final String date;
     private final String dateTime;
 
     public DateTimeFormatConfig(
-            @Value("${default-date-format}") String date,
-            @Value("${default-date-time-format}") String dateTime
+            @Value("${default-date-format}") String dateFormat,
+            @Value("${default-date-time-format}") String dateTimeFormat
     ) {
-        this.date = date;
-        this.dateTime = dateTime;
+        this.date = dateFormat;
+        this.dateTime = dateTimeFormat;
     }
 
     @Override
