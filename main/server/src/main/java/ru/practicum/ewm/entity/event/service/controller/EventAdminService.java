@@ -1,4 +1,4 @@
-package ru.practicum.ewm.entity.event.service.contoller;
+package ru.practicum.ewm.entity.event.service.controller;
 
 import ru.practicum.ewm.entity.event.dto.request.UpdateEventAdminRequestDto;
 import ru.practicum.ewm.entity.event.dto.response.EventFullResponseDto;

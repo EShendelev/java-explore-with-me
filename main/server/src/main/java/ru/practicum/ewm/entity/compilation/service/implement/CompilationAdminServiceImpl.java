@@ -1,4 +1,4 @@
-package ru.practicum.ewm.entity.compilation.service.impl;
+package ru.practicum.ewm.entity.compilation.service.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

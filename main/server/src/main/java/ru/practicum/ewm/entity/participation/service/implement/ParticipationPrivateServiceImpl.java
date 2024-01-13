@@ -1,4 +1,4 @@
-package ru.practicum.ewm.entity.participation.service.impl;
+package ru.practicum.ewm.entity.participation.service.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,7 @@ import ru.practicum.ewm.entity.participation.entity.Participation;
 import ru.practicum.ewm.entity.participation.mapper.ParticipationMapper;
 import ru.practicum.ewm.entity.participation.repository.ParticipationRequestJpaRepository;
 import ru.practicum.ewm.entity.participation.service.ParticipationPrivateService;
-import ru.practicum.ewm.entity.participation.validation.validator.ParticipationValidator;
+import ru.practicum.ewm.entity.participation.validation.ParticipationValidator;
 import ru.practicum.ewm.entity.user.entity.User;
 import ru.practicum.ewm.entity.user.repository.UserJpaRepository;
 import ru.practicum.ewm.exception.ConflictException;

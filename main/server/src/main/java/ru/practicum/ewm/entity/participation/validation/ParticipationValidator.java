@@ -1,4 +1,4 @@
-package ru.practicum.ewm.entity.participation.validation.validator;
+package ru.practicum.ewm.entity.participation.validation;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

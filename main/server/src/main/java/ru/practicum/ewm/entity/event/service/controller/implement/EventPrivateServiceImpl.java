@@ -16,14 +16,14 @@ import ru.practicum.ewm.entity.event.dto.response.EventShortResponseDto;
 import ru.practicum.ewm.entity.event.entity.Event;
 import ru.practicum.ewm.entity.event.mapper.EventMapper;
 import ru.practicum.ewm.entity.event.repository.EventJpaRepository;
-import ru.practicum.ewm.entity.event.service.contoller.EventPrivateService;
-import ru.practicum.ewm.entity.event.validation.validator.EventValidator;
+import ru.practicum.ewm.entity.event.service.controller.EventPrivateService;
+import ru.practicum.ewm.entity.event.validation.EventValidator;
 import ru.practicum.ewm.entity.participation.dto.request.UpdateEventParticipationStatusRequestDto;
 import ru.practicum.ewm.entity.participation.dto.response.ParticipationResponseDto;
 import ru.practicum.ewm.entity.participation.entity.Participation;
 import ru.practicum.ewm.entity.participation.mapper.ParticipationMapper;
 import ru.practicum.ewm.entity.participation.repository.ParticipationRequestJpaRepository;
-import ru.practicum.ewm.entity.participation.validation.validator.ParticipationValidator;
+import ru.practicum.ewm.entity.participation.validation.ParticipationValidator;
 import ru.practicum.ewm.entity.user.entity.User;
 import ru.practicum.ewm.entity.user.repository.UserJpaRepository;
 

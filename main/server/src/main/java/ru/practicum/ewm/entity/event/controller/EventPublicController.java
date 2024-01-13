@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.ewm.entity.event.dto.response.EventFullResponseDto;
 import ru.practicum.ewm.entity.event.dto.response.EventShortResponseDto;
 import ru.practicum.ewm.entity.event.entity.Event;
-import ru.practicum.ewm.entity.event.service.contoller.EventPublicService;
+import ru.practicum.ewm.entity.event.service.controller.EventPublicService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Positive;

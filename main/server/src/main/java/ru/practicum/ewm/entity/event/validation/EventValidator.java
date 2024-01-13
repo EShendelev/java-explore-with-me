@@ -1,4 +1,4 @@
-package ru.practicum.ewm.entity.event.validation.validator;
+package ru.practicum.ewm.entity.event.validation;
 
 import lombok.experimental.UtilityClass;
 import ru.practicum.ewm.entity.event.entity.Event;

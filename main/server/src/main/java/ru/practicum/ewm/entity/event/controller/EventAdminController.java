@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.ewm.entity.event.dto.request.UpdateEventAdminRequestDto;
 import ru.practicum.ewm.entity.event.dto.response.EventFullResponseDto;
 import ru.practicum.ewm.entity.event.entity.Event;
-import ru.practicum.ewm.entity.event.service.contoller.EventAdminService;
+import ru.practicum.ewm.entity.event.service.controller.EventAdminService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -24,15 +24,16 @@ public class EventAdminController {
     private final EventAdminService adminEventService;
 
     @GetMapping
-    public Iterable<EventFullResponseDto> getEventsByParameters(@RequestParam(required = false) Set<Long> users,
-                                                                @RequestParam(required = false) Set<Event.State> states,
-                                                                @RequestParam(required = false) Set<Long> categories,
-                                                                @RequestParam(required = false) LocalDateTime rangeStart,
-                                                                @RequestParam(required = false) LocalDateTime rangeEnd,
-                                                                @RequestParam(defaultValue = "0")
-                                                                    @PositiveOrZero Integer from,
-                                                                @RequestParam(defaultValue = "10")
-                                                                    @Positive Integer size) {
+    public Iterable<EventFullResponseDto> getEventsByParameters(
+            @RequestParam(required = false) Set<Long> users,
+            @RequestParam(required = false) Set<Event.State> states,
+            @RequestParam(required = false) Set<Long> categories,
+            @RequestParam(required = false) LocalDateTime rangeStart,
+            @RequestParam(required = false) LocalDateTime rangeEnd,
+            @RequestParam(defaultValue = "0")
+            @PositiveOrZero Integer from,
+            @RequestParam(defaultValue = "10")
+            @Positive Integer size) {
         log.info("get EVENT_PAGE<DTO>[from={}, size={}, user_ids_count={}, states_count={}, categories_count={}, "
                         + "start_time={}, end_time={}] by parameters.",
                 from, size, (users != null) ? users.size() : "ALL", (states != null) ? states.size() : "ALL",
