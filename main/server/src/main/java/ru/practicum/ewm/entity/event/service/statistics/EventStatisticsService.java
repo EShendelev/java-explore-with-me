@@ -32,8 +32,9 @@ public interface EventStatisticsService {
             }
             uriStrings.add(String.format("/events%d", event.getId()));
         }
-        List<Long> eventViewsList = getEventViews(firstTime,
+        List<Long> eventViewsList = getEventViews(
                 LocalDateTime.now(),
+                firstTime,
                 uriStrings,
                 uniqueViews);
 

@@ -4,10 +4,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.util.UriUtils;
 import ru.practicum.ewm.hit.dto.request.AddEndpointHitRequestDto;
 import ru.practicum.ewm.hit.dto.response.EndpointHitResponseDto;
 import ru.practicum.ewm.hit.dto.response.stats.ViewStatsResponseDto;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -42,10 +44,12 @@ public class EndpointHitClient {
                 .queryParam("end", end.format(dateTimeFormat))
                 .queryParam("uris", uris)
                 .queryParam("unique", unique)
-                .build().toUriString().replace(" ", "%20");
+                .build().toUriString();
+
+        String finalUri = UriUtils.encode(uri, StandardCharsets.UTF_8);
 
         return webClient.get()
-                .uri(uri)
+                .uri(finalUri)
                 .retrieve()
                 .bodyToFlux(ViewStatsResponseDto.class)
                 .collectList()
