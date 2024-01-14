@@ -42,7 +42,7 @@ public class EndpointHitClient {
                 .queryParam("end", end.format(dateTimeFormat))
                 .queryParam("uris", uris)
                 .queryParam("unique", unique)
-                .build().toUriString();
+                .build().toUriString().replace(" ", "%20");
 
         return webClient.get()
                 .uri(uri)
@@ -50,5 +50,6 @@ public class EndpointHitClient {
                 .bodyToFlux(ViewStatsResponseDto.class)
                 .collectList()
                 .block();
+
     }
 }
