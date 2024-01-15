@@ -21,7 +21,7 @@ services:
 
 
   stats_service-db:
-    image: postgres:15-alpine
+    image: postgres:14-alpine
     container_name: stat_server-db
     ports:
     - "6666:5432"
@@ -49,7 +49,7 @@ services:
       - MAIN_PASSWORD=123
 
   ewm-db:
-    image: postgres:15-alpine
+    image: postgres:14-alpine
     container_name: postgres-main-db
     ports:
      - "6464:5432"
