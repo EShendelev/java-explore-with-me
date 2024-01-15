@@ -24,6 +24,7 @@
         <dependency>
             <groupId>ru.practicum</groupId>
             <artifactId>stat_dto</artifactId>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
 
@@ -86,5 +87,5 @@
             </plugin>
         </plugins>
     </build>
-    
+
 </project>
