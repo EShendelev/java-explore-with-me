@@ -33,7 +33,7 @@ public class CategoryAdminServiceImpl implements CategoryAdminService {
             throw new NotUniqueException("Category with this name already exists");
         }
         try {
-            Category result = categoryMainServiceRepository.saveAndFlush(CategoryMapper.toCategories(requestCategory));
+            Category result = categoryMainServiceRepository.save(CategoryMapper.toCategories(requestCategory));
             log.info("Result: category - {} - saved", result.getName());
             return CategoryMapper.toCategoryDto(result);
 
@@ -57,9 +57,6 @@ public class CategoryAdminServiceImpl implements CategoryAdminService {
             throw new ConflictException("Can't delete a category with associated events");
         }
 
-        if (!categoryMainServiceRepository.existsById(catId)) {
-            throw new NotFoundException("Category does not exist");
-        }
         log.info("Result: category with id - {} - deleted", catId);
         categoryMainServiceRepository.deleteById(catId);
     }
