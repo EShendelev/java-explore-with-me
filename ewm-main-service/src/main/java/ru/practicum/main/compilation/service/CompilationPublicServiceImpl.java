@@ -40,7 +40,7 @@ public class CompilationPublicServiceImpl implements CompilationPublicService {
         Pageable pageable = PageRequest.of(from, size, Sort.Direction.ASC, "id");
 
         List<Compilation> compilations;
-        compilations = (pinned == null) ? compilationMainServiceRepository.findAll(pageable).getContent() :
+        compilations = (pinned == null) ? compilationMainServiceRepository.findAll(pageable).toList() :
                 compilationMainServiceRepository.findAllByPinned(pinned, pageable).toList();
         log.info("Result : {}", compilations);
         return CompilationMapper.toCompilationDtoList(compilations);

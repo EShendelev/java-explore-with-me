@@ -57,8 +57,8 @@ public class CategoryAdminServiceImpl implements CategoryAdminService {
             throw new ConflictException("Can't delete a category with associated events");
         }
 
-        log.info("Result: category with id - {} - deleted", catId);
         categoryMainServiceRepository.deleteById(catId);
+        log.info("Result: category with id - {} - deleted", catId);
     }
 
     @Transactional
