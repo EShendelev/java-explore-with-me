@@ -41,7 +41,7 @@ public class CompilationPublicServiceImpl implements CompilationPublicService {
 
         List<Compilation> compilations;
         compilations = (pinned == null) ? compilationMainServiceRepository.findAll(pageable).getContent() :
-                compilationMainServiceRepository.findAllByPinned(pinned, pageable);
+                compilationMainServiceRepository.findAllByPinned(pinned, pageable).toList();
         log.info("Result : {}", compilations);
         return CompilationMapper.toCompilationDtoList(compilations);
     }
