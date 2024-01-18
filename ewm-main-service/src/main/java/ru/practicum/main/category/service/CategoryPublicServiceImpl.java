@@ -2,6 +2,7 @@ package ru.practicum.main.category.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.main.category.dto.CategoryDto;
@@ -25,9 +26,10 @@ public class CategoryPublicServiceImpl implements CategoryPublicService {
     @Override
     public List<CategoryDto> readAllCategories(Integer from, Integer size) {
         log.info("readAllCategories - invoked");
-        List<Category> cat = repository.findAllCategories(createPageRequestAsc(from, size));
-        log.info("Result: categories size = {}", cat.size());
-        return CategoryMapper.toListCategoriesDto(cat);
+        Page<Category> cat = repository.findAll(createPageRequestAsc(from, size));
+        List<Category> categories = cat.toList();
+        log.info("Result: categories size = {}", cat.toList().size());
+        return CategoryMapper.toListCategoriesDto(categories);
 
     }
 
