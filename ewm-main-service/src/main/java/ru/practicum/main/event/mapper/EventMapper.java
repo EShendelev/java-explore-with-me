@@ -96,7 +96,7 @@ public class EventMapper {
         return event;
     }
 
-    public EventDto toEventShort(Event event, Long view, Long confirmedRequests) {
+    public EventDto toEventDto(Event event, Long view, Long confirmedRequests, Long commentCount) {
         return EventDto.builder()
                 .id(event.getId())
                 .eventDate(event.getEventDate())
@@ -107,6 +107,7 @@ public class EventMapper {
                 .initiator(event.getInitiator())
                 .paid(event.getPaid())
                 .title(event.getTitle())
+                .commentCount(commentCount)
                 .build();
     }
 
@@ -128,7 +129,7 @@ public class EventMapper {
         return list.stream().map(EventMapper::toEventShortDto).collect(Collectors.toList());
     }
 
-    public EventDto toEventShort(Event event) {
+    public EventDto toEventDto(Event event) {
         return EventDto.builder()
                 .id(event.getId())
                 .eventDate(event.getEventDate())
@@ -143,10 +144,10 @@ public class EventMapper {
     }
 
     public static List<EventDto> toListEventShort(List<Event> list) {
-        return list.stream().map(EventMapper::toEventShort).collect(Collectors.toList());
+        return list.stream().map(EventMapper::toEventDto).collect(Collectors.toList());
     }
 
-    public static EventShortDto toEventShortDto(Event event) { //добавил
+    public static EventShortDto toEventShortDto(Event event) {
         return EventShortDto.builder()
                 .annotation(event.getAnnotation())
                 .category(CategoryMapper.toCategoryDto(event.getCategory()))
@@ -157,6 +158,13 @@ public class EventMapper {
                 .paid(event.getPaid())
                 .title(event.getTitle())
                 .views(event.getView())
+                .build();
+    }
+
+    public EventCommentDto toEventComment(Event event) {
+        return EventCommentDto.builder()
+                .id(event.getId())
+                .title(event.getTitle())
                 .build();
     }
 }
